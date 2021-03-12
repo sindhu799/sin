@@ -1,0 +1,14 @@
+version: '3'
+services:
+  hello-world:
+    image: reactdemo
+    ports:
+      - 3000:3000
+    links: 
+      - spring-boot-hello-world-example
+
+  spring-boot-hello-world-example:
+    image: springdemo
+    ports: 
+      - 8080:8080
+
