@@ -1,0 +1,31 @@
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'Spring_boot/pom.xml'
+    goals: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+    
+               
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ADD YOUR ACR NAME'
+    repository: 'Azure Container Registry'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+               
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ADD YOUR ACR NAME'
+    repository: 'Azure Container Registry'
+    command: 'push'
+
