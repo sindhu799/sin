@@ -18,14 +18,14 @@ steps:
                
 - task: Docker@2
   inputs:
-    containerRegistry: 'ADD YOUR ACR NAME'
+    containerRegistry: 'javademo1.azurecr.io'
     repository: 'Azure Container Registry'
     command: 'build'
     Dockerfile: '**/Dockerfile'
                
 - task: Docker@2
   inputs:
-    containerRegistry: 'ADD YOUR ACR NAME'
+    containerRegistry: 'javademo1.azurecr.io'
     repository: 'Azure Container Registry'
     command: 'push'
 
